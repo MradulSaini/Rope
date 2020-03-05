@@ -31,21 +31,22 @@
             if(Email==null)
                 response.sendRedirect("Error.html");
             
-            String pin=PinDAO.pinGenerate();
-            String verification_link = "http://localhost:8084/RopeofHopeFinal"+"/ForgotPassVerify.jsp?f="+pin+"&type=1";
-            
             PinDAO p1=new PinDAO();
-            if(e.ForgotSent(Email,pin))
+            if(e.ForgotSent(Email))
                 response.sendRedirect("AlreadyRegistered.html");
-            else{                  
+            else
+            {
+                String pin=PinDAO.pinGenerate();
+                String verification_link = "http://localhost:8084/RopeofHopeFinal"+"/ForgotPassVerify.jsp?f="+pin+"&type=1";
                 if(!p1.pinEntry2(Email, pin))
                 {
-                    response.sendRedirect("Error.html");
+                    request.getRequestDispatcher("Forgot.html").include(request, response);
+                    out.println("<h2 style=\"background:whitesmoke; border-radius:15%; width:22%; text-align:center;padding:0.5%; margin-left:69%;\">Please Try Again.</h2>");
                 }
                 else{
                     boolean mailSent = MailDAO.sendMail(Email, 
                         "Verification Mail From Rope Of Hope", 
-                        "Click on the link for change your password: "+verification_link);
+                        "Click on the link to change your password: "+verification_link);
 
                     if(mailSent)
                     {   
@@ -61,7 +62,7 @@
                 <h2  align="center"> Click here for Other<a onclick="myFunction()" href="https://google.co.in/"><img src="https://img.icons8.com/color/64/000000/google-logo.png"></a></h2>
 
                 <br> 
-                <h2 align="center"> A verification mail has been sent to Email <%=Email%></h2>
+                <h2 align="center"> A Change Password link has been sent to Email <%=Email%></h2>
                     <%
                     }
                     else

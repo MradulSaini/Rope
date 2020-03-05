@@ -4,6 +4,7 @@
     Author     : Mradul
 --%>
 
+<%@page import="DAO.EmployeeDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,10 +16,10 @@
         <title>Volunteer Page</title>
     </head>
     <%
-        String email=null;
+        String email=null,name=null;
         try
         {
-            if(session==null || !session.getAttribute("etype").equals("volunteer"))
+            if(session ==null || !session.getAttribute("etype").equals("volunteer"))
             {
                 response.sendRedirect("login.html");
             }
@@ -26,22 +27,27 @@
             {
                 session.setMaxInactiveInterval(150);
                 email=session.getAttribute("email").toString();
-                session.setAttribute("email", email);
-                session.setAttribute("etype", "volunteer");
                 
+                name=EmployeeDAO.firstName(email);
+                session.setAttribute("email", email);
+                session.setAttribute("etype", "volunteer");                
             }
         }
         catch(Exception e)
         {
             System.out.println("Error Occurred " + e.getMessage());
-            response.sendRedirect("Error.html");
+            request.getRequestDispatcher("login.html").include(request, response);
+        %>
+        <h1>You must login first</h1>
+    
+    <%
         }
         
     %>
     <body style="background-color: rgb(54, 153, 148);">
         <header class="header">
       <h1 class="logo"><a href="#">Rope Of Hope</a></h1>
-      <h3 style="color: white;">Hello <%=email%></h3>
+      <h3 style="color: white;">Hello <%=name%></h3>
         <ul class="main-nav">
             <li><a href="#profile">Profile</a></li>
             <li><a href="LogoutAdmin">Log Out</a></li>

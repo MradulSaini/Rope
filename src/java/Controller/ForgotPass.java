@@ -40,24 +40,23 @@ public class ForgotPass extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ForgotPass</title>");            
+            out.println("<title>ForgotPass</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ForgotPass at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            out.println("<h1>ForgotPass"+"</h1>");
+            
             
             EmployeeDAO e=new EmployeeDAO();
-                    String Email=request.getParameter("Email");  
-                    String newPass=request.getParameter("newPass");
-                    e.ForgotPass(Email, newPass);
-                    PinDAO.pinDelete2(Email);
-                    out.println("Password Change Successfully!!!");
-                    out.println("<br>");
-                    out.println("<button><a href='login.html'>Login</a></button>");
-                    out.println("<br>");
-                    out.println("<button><a href='index.html'>Home</a></button>");
-                    
+            String Email=request.getParameter("Email");  
+            String newPass=request.getParameter("newPass");
+                e.ForgotPass(Email, newPass);
+                PinDAO.pinDelete2(Email);
+            request.getRequestDispatcher("Success.html").include(request, response);
+            out.println("Password Change Successfully!!!");
+            out.println("<br>");
+            out.println("<button><a href='login.html'>Login</a></button>");
+            out.println("<br>");
+            out.println("<button><a href='index.html'>Home</a></button>");
         }
     }
 

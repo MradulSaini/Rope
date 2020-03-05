@@ -9,7 +9,7 @@
     <style>
         body
         {
-            background: url('img/16.jpg');
+            background: url('img/14.jpg');
             -webkit-background-size: auto;
             -moz-background-size: auto;
             -o-background-size: auto;
@@ -42,16 +42,16 @@
         
             </div>
       
-        <div style="opacity:75%; width:35%" class="form-modal">
+        <div style="opacity:75%; width:26%" class="form-modal">
            
         <br>
             <h1 style="text-align: center; font-size:large; font-family: Arial, Helvetica, sans-serif;">
-                Enter Your New Password!
+                Enter Your New Password
             </h1>
         <form  action="ForgotPass" method="post">
             
-        <input style="font-family: Arial;" type="text" name="Email" readonly required value="<%=Email%>"/>
-        <input type="text" required name="newPass" style="font-family: Arial;" autofocus placeholder="Enter Your New Password"/>
+        <input style="font-family: Arial;" type="text"  name="Email" readonly required value="<%=Email%>"/>
+        <input type="password" required name="newPass" style="font-family: Arial;" autofocus placeholder="Enter Your New Password"/>
         <button style="margin-left:160px" type="submit" class="btn login">Change</button>
         </form>
         </div>

@@ -4,6 +4,7 @@
     Author     : Mradul
 --%>
 
+<%@page import="DAO.DonorDAO"%>
 <%@page import="javax.websocket.Session"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,6 +18,7 @@
     </head>
     <%
         String email=null;
+        String name=null;
         try
         {   
             if(session.getAttribute("email")==null || !session.getAttribute("etype").equals("Donor"))
@@ -26,8 +28,11 @@
             else
             {
                 email=session.getAttribute("email").toString();
+                name=DonorDAO.firstName(email);
+                
                 session.setAttribute("Email", email);
-                session.setAttribute("etype", "Donor");
+                session.setAttribute("etype", "Donor"); 
+                session.setAttribute("name", name);
                 session.setMaxInactiveInterval(260);
             }
         }
@@ -42,7 +47,7 @@
     <body style="background: #9DC183">
     <header class="header">
       <h1 class="logo"><a href="#">Rope Of Hope</a></h1>
-      <h3 style="color: #eeee58;">Hello <%=email%></h3>
+      <h3 style="color: #eeee58;">Hello <%=name%></h3>
         <ul class="main-nav">
             <li><a href="DonorProfile.jsp">Profile</a></li>
             <li><a href="LogoutAdmin">Log Out</a></li>

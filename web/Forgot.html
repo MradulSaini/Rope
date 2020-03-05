@@ -9,7 +9,7 @@
     <style>
         body
         {
-            background: url('img/forgotback.JPG');
+            background: url('img/forgotback.jpg');
             -webkit-background-size: auto;
             -moz-background-size: auto;
             -o-background-size: auto;
@@ -25,19 +25,22 @@
         
             </div>
       
-        <div style="opacity:75%; width:35%" class="form-modal">
+        <div style="opacity:85%; width:30%" class="form-modal">
            
         <br>
             <h1 style="text-align: center; font-size:large; font-family: Arial, Helvetica, sans-serif;">
-                Enter Your Email For Changing Password!
+                Enter your E-mail for changing Password.
             </h1>
-        <form  action="ForgotPass.jsp" method="post">
+        <form  action="ForgotPass.jsp" method="post" name="myForm">
             
         <input type="email" required name="Email" style="font-family: Arial;" autofocus placeholder="Enter Your Email"/>
-        <button onclick="myFunction()" style="margin-left:150px" type="submit" class="btn login">Verify</button><br>
+        <button onclick="myLoader()" style="margin-left:150px"  type="submit" class="btn login" name="e">Verify</button><br>
         </form>
         <hr>
         <h3 style="text-align: center; padding-bottom:3%"><a href="index.html"><u> Back to Home </u></a></h3>
         </div>
+      
+       
+
   </body>
 </html>

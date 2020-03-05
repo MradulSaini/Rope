@@ -494,32 +494,48 @@ public class EmployeeDAO
         
         return false;        //The user Doesnot Exists
     }
-    //Search Temprary table for data.
-    public boolean alreadySent(String Email,String Pin)throws Exception
+    //Search Temporary table for data.
+    public boolean alreadySent(String Email)throws Exception
     {
         Connection con=Mycon.getConnection();
-        String sql="select Email from verifyuser where Pin=?;";
+        String sql="select * from verifyuser where Email=?;";
         PreparedStatement ps=con.prepareStatement(sql);
-        ps.setString(1, Pin);
+        ps.setString(1, Email);
         ResultSet rs=ps.executeQuery();
         if(rs.next())
             return true;
         return false;
     }
     
-    //Search Temprary table for data.
-    public boolean ForgotSent(String Email,String Pin)throws Exception
+    //Search Temporary table for data.
+    public boolean ForgotSent(String Email)throws Exception
     {
         Connection con=Mycon.getConnection();
-        String sql="select Email from forgotpass where Pin=?;";
+        String sql="select Email from forgotpass where Email=?;";
         PreparedStatement ps=con.prepareStatement(sql);
-        ps.setString(1, Pin);
+        ps.setString(1, Email);
         ResultSet rs=ps.executeQuery();
         if(rs.next())
             return true;
         return false;
     }
 
+    //Get the First name of the Employee.
+    
+    public static String firstName(String Email)throws Exception
+    {
+        PreparedStatement ps=null;
+        Connection con=Mycon.getConnection();
+        String sql="select First_Name from employee where email_id=?";
+        ps=con.prepareStatement(sql);
+        
+        ps.setString(1, Email);
+        ResultSet rs=ps.executeQuery();
+        if(rs.next())
+            return rs.getString("First_Name");
+        return "";
+        
+    }
   
     
     

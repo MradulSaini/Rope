@@ -38,14 +38,15 @@ public class AddingItemDonation extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddingItemDonation</title>");            
+            out.println("<title>AddingItemDonation</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AddingItemDonation at " + request.getContextPath() + "</h1>");
             
             int donationid=Integer.parseInt(request.getParameter("donation_id"));
             
-            try{
+            try
+            {
                 DonorDAO dd=new DonorDAO();
                 if(dd.updateItemDonation(donationid))
                 {

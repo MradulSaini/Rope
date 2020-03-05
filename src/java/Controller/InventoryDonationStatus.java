@@ -40,11 +40,12 @@ public class InventoryDonationStatus extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InventoryDonationStatus</title>");            
+            out.println("<title>InventoryDonationStatus</title>");            
             out.println("</head>");
             out.println("<body style='background:#7ED5EA;'>");
-            out.println("<h1>Inventory Donation Status:   "+ "</h1>");
+            out.println("<h1 style='text-align:center;'><img src=\"https://img.icons8.com/material-outlined/48/000000/data-pending.png\"> Inventory Donation Status   "+ "</h1>");
             HttpSession session=request.getSession();
+        
             try
             {
                 if(session.getAttribute("email")==null || !session.getAttribute("etype").equals("admin"))
@@ -54,7 +55,7 @@ public class InventoryDonationStatus extends HttpServlet {
                 else
                 {
                     //Here we will call DonationEntryDAO and will Display the Verify Button for the itemdonation.
-                    session.setMaxInactiveInterval(60);
+                    session.setMaxInactiveInterval(560);
                     List<DonationStatus> donationVerify=new ArrayList<DonationStatus>();
                     DonationEntryDAO D=new DonationEntryDAO();
                     donationVerify=D.donationVerify();
@@ -90,16 +91,17 @@ public class InventoryDonationStatus extends HttpServlet {
                             //Form and hidden field
                             out.println("<div align='center'><form action='AddingItemDonation' method='post'><button type='submit'  style='background-color:#272727; color:#eeee58; border:none; border-radius: 5px; font-size:18px;'>Verify The Donation</button>");
                             out.println("<input type='hidden' name='donation_id' value='"+donationVerify.get(i).getDonationId() +"'>");
+                            
                             out.println("</form></div>");
                             
                             out.println("<br><hr>");
-                        }
-                        out.println("<div><a href='admin.jsp'>BACK</a></div>");                     
+                        }                    
                     }
                     else
                     {
-                        out.println("No Current Donation For Verification");
+                        out.println("<br><br><h2 style='text-align:center;'><img src=\"https://img.icons8.com/pastel-glyph/64/000000/empty-box.png\">Oops!! No Current Donation For Verification</h2>");
                     }
+                    out.println("<br><br><div><a href='admin.jsp'><img src=\"https://img.icons8.com/android/24/000000/circled-left.png\"> BACK</a></div>");
                 }
             }
             catch(Exception Exc)

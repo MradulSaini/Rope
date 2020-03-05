@@ -35,7 +35,7 @@
             String verification_link = "http://localhost:8084/RopeofHopeFinal"+"/verifyuser.jsp?v="+pin+"&type=1";
             
             PinDAO p1=new PinDAO();
-            if(e.searchEmail(Email) || e.alreadySent(Email,pin))
+            if(e.searchEmail(Email) || e.alreadySent(Email))
                 response.sendRedirect("AlreadyRegistered.html");
             else{                  
                 if(!p1.pinEntry(Email, pin))

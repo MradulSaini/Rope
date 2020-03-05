@@ -1,11 +1,11 @@
-var Item_arr = new Array("Pencil", "Drawing", "Colour", "Pen", "Copy", "Erasers", "Sharpeners", "Study Table", "Scale", "Chalk", "Duster", "Board");
+var Item_arr = new Array("Pencil", "Drawing", "Colour", "Pen", "Copy", "Eraser", "Sharpener", "StudyTable", "Scale", "Chalk", "Duster", "Board");
 
 var t = new Array();
 t[0]="";
 t[1]="Colour | Plain | Other ";
-t[2]="Book | Sheets |Other ";
-t[3]="Water | Sketch | Other";
-t[4]="Ball | Gel | Inkpen | Other";
+t[2]="Book | Sheet |Other ";
+t[3]="Water | Sketch | Crayons | Other ";
+t[4]="Ball | Gel | Ink | Other";
 t[5]="Rough | Fair | Other";
 t[6]=" Default ";
 t[7]=" Default ";
@@ -13,7 +13,7 @@ t[8]=" Default ";
 t[9]=" Small | Large | Other";
 t[10]=" Default ";
 t[11]=" Default ";
-t[12]=" Black | White | Other";
+t[12]=" Black | White";
 
 function print_item(item_id){
 	// given the id of the <select> tag as function argument, it inserts <option> tags

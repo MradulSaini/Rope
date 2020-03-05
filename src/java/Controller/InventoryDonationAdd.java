@@ -46,7 +46,7 @@ public class InventoryDonationAdd extends HttpServlet {
             out.println("<title>Servlet InventoryDonationAdd</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet InventoryDonationAdd at " + request.getContextPath() + "</h1>");
+            out.println("<h1>InventoryDonationAdd </h1>");
             HttpSession session=request.getSession(false);
             if(session.getAttribute("Email")==null || !session.getAttribute("etype").equals("Donor"))
             {
@@ -68,13 +68,14 @@ public class InventoryDonationAdd extends HttpServlet {
                 String Color=request.getParameter("Color");
                 String Pen=request.getParameter("Pen");
                 String Scale=request.getParameter("Scale");
-                String Erasers=request.getParameter("Erasers");
-                String Sharpners=request.getParameter("Sharpners");
+                String Erasers=request.getParameter("Eraser");
+                String Sharpners=request.getParameter("Sharpener");
                 String Board=request.getParameter("Board");
                 String Chalk=request.getParameter("Chalk");
                 String Duster=request.getParameter("Duster");
                 String StudyTable=request.getParameter("StudyTable");
                 
+                System.out.println("Pencil "+ Pencil);
                 System.out.println("Drawing "+ Drawing);
                 System.out.println("Copy "+ Copy);
                 System.out.println("Color "+ Color);
@@ -87,223 +88,324 @@ public class InventoryDonationAdd extends HttpServlet {
                 System.out.println("Duster "+ Duster);
                 System.out.println("StudyTable "+ StudyTable);
                 
-                if(Pencil!=null && Pencil.equals("on"))
+                String PencilType=request.getParameter("penciltype");
+                String DrawingType=request.getParameter("drawingtype");
+                String CopyType=request.getParameter("copytype");
+                String ColorType=request.getParameter("colortype");
+                String PenType=request.getParameter("pentype");
+                String ScaleType=request.getParameter("scaletype");
+                String ErasersType=request.getParameter("erasertype");
+                String SharpnersType=request.getParameter("sharpenertype");
+                String BoardType=request.getParameter("boardtype");
+                String ChalkType=request.getParameter("chalktype");
+                String DusterType=request.getParameter("dustertype");
+                String StudyTableType=request.getParameter("studytabletype");
+                int flag=0;
+                
+                if(Pencil != null && PencilType.equalsIgnoreCase("none"))
                 {
-                    ItemInfo temp=new ItemInfo();
-                    String PencilType=request.getParameter("penciltype");
-                 
-                    int pencilQty=Integer.parseInt(request.getParameter("PencilQTY"));
-                    
-                    temp.setItemName("Pencil");
-                    temp.setItemType(PencilType);
-                    temp.setQuantity(pencilQty);
-                    
-                    Item.add(temp);
-                    
-                    System.out.println("Pencil"+"Type: "+PencilType+" Quantity: "+pencilQty);
-                }
-                
-                if(Drawing!=null && Drawing.equals("on"))
-                {
-                    ItemInfo temp=new ItemInfo();
-                    String DrawingType=request.getParameter("drawingtype");
-                 
-                    int DrawingQty=Integer.parseInt(request.getParameter("DrawingQTY"));
-                    
-                    temp.setItemName("Drawing");
-                    temp.setItemType(DrawingType);
-                    temp.setQuantity(DrawingQty);
-                    
-                    Item.add(temp);
-                    
-                  
-                    System.out.println("Drawing"+"Type: "+DrawingType+" Quantity: "+DrawingQty);
-                }
-                
-                if(Copy!=null && Copy.equals("on"))
-                {
-                    ItemInfo temp=new ItemInfo();
-                    String CopyType=request.getParameter("copytype");
-                 
-                    int CopyQty=Integer.parseInt(request.getParameter("CopyQTY"));
-                    
-                    temp.setItemName("Copy");
-                    temp.setItemType(CopyType);
-                    temp.setQuantity(CopyQty);
-                    
-                    Item.add(temp);
-                    
-                  
-                    System.out.println("Copy"+"Type: "+CopyType+" Quantity: "+CopyQty);
-                }
-                
-                
-                if(Color!=null && Color.equals("on"))
-                {
-                    ItemInfo temp=new ItemInfo();
-                    String ColorType=request.getParameter("colortype");
-                 
-                    int ColorQty=Integer.parseInt(request.getParameter("ColorQTY"));
-                    
-                    temp.setItemName("Colour");
-                    temp.setItemType(ColorType);
-                    temp.setQuantity(ColorQty);
-                    
-                    Item.add(temp);
-                    
-                    
-                    System.out.println("Color"+"Type: "+ColorType+" Quantity: "+ColorQty);
-                }
-                
-                if(Pen!=null && Pen.equals("on"))
-                {
-                    ItemInfo temp=new ItemInfo();
-                    String PenType=request.getParameter("pentype");
-                 
-                    int PenQty=Integer.parseInt(request.getParameter("PenQTY"));
-                    
-                    temp.setItemName("Pen");
-                    temp.setItemType(PenType);
-                    temp.setQuantity(PenQty);
-                    
-                    Item.add(temp);
-                    
-      
-                    System.out.println("Pen"+"Type: "+PenType+" Quantity: "+PenQty);
-                }
-                
-                if(Scale!=null && Scale.equals("on"))
-                {
-                    ItemInfo temp=new ItemInfo();
-                    String ScaleType=request.getParameter("scaletype");
-                 
-                    int ScaleQty=Integer.parseInt(request.getParameter("ScaleQTY"));
-                    
-                    temp.setItemName("Scale");
-                    temp.setItemType(ScaleType);
-                    temp.setQuantity(ScaleQty);
-                    
-                    Item.add(temp);
-                    
-                    
-                    System.out.println("Scale"+"Type: "+ScaleType+" Quantity: "+ScaleQty);
-                }
-                
-                if(Erasers!=null && Erasers.equals("on"))
-                {
-                    ItemInfo temp=new ItemInfo();
-                    String ErasersType=request.getParameter("erasertype");
-                 
-                    int ErasersQty=Integer.parseInt(request.getParameter("EraserQTY"));
-                    
-                    temp.setItemName("Eraser");
-                    temp.setItemType(ErasersType);
-                    temp.setQuantity(ErasersQty);
-                    
-                    Item.add(temp);
-                    
-                    
-                    System.out.println("Eraser"+"Type: "+ErasersType+" Quantity: "+ErasersQty);
-                }
-                
-                if(Sharpners!=null && Sharpners.equals("on"))
-                {
-                    ItemInfo temp=new ItemInfo();
-                    String SharpnersType=request.getParameter("sharpenertype");
-                 
-                    int SharpnersQty=Integer.parseInt(request.getParameter("SharpenerQTY"));
-                    
-                    temp.setItemName("Sharpner");
-                    temp.setItemType(SharpnersType);
-                    temp.setQuantity(SharpnersQty);
-                    
-                    Item.add(temp);
-                    
-                    
-                    System.out.println("Sharpner"+"Type: "+SharpnersType+" Quantity: "+SharpnersQty);
-                }
-                
-                if(Board!=null && Board.equals("on"))
-                {
-                    ItemInfo temp=new ItemInfo();
-                    String BoardType=request.getParameter("boardtype");
-                 
-                    int BoardQty=Integer.parseInt(request.getParameter("BoardQTY"));
-                    
-                    temp.setItemName("Board");
-                    temp.setItemType(BoardType);
-                    temp.setQuantity(BoardQty);
-                    
-                    Item.add(temp);
-                    
-                    
-                    System.out.println("Board"+"Type: "+BoardType+" Quantity: "+BoardQty);
-                }
-                
-                if(Chalk!=null && Chalk.equals("on"))
-                {
-                    ItemInfo temp=new ItemInfo();
-                    String ChalkType=request.getParameter("chalktype");
-                 
-                    int ChalkQty=Integer.parseInt(request.getParameter("ChalkQTY"));
-                    
-                    temp.setItemName("Chalk");
-                    temp.setItemType(ChalkType);
-                    temp.setQuantity(ChalkQty);
-                    
-                    Item.add(temp);
-                    
-                    
-                    System.out.println("Chalk"+"Type: "+ChalkType+" Quantity: "+ChalkQty);
-                }
-                
-                
-                if(Duster!=null && Duster.equals("on"))
-                {
-                    ItemInfo temp=new ItemInfo();
-                    String DusterType=request.getParameter("dustertype");
-                 
-                    int DusterQty=Integer.parseInt(request.getParameter("DusterQTY"));
-                    
-                    temp.setItemName("Duster");
-                    temp.setItemType(DusterType);
-                    temp.setQuantity(DusterQty);
-                    
-                    Item.add(temp);
-                    
-                    
-                    System.out.println("Duster"+"Type: "+DusterType+" Quantity: "+DusterQty);
-                }
-                
-                
-                if(StudyTable!=null && StudyTable.equals("on"))
-                {
-                    ItemInfo temp=new ItemInfo();
-                    String StudyTableType=request.getParameter("studytabletype");
-                 
-                    int StudyTableQty=Integer.parseInt(request.getParameter("StudyTableQTY"));
-                    
-                    temp.setItemName("StudyTable");
-                    temp.setItemType(StudyTableType);
-                    temp.setQuantity(StudyTableQty);
-                    
-                    Item.add(temp);
-                    
-                    
-                    System.out.println("StudyTable"+"Type: "+StudyTableType+" Quantity: "+StudyTableQty);
-                }
-                
-                
-                //ADDING DONATION IN DATABASE
-                if(Id.addDonation(Email,Item))
-                {
-                    MailDAO.sendMail(Email,"Donation Request Received","Dear Hope we have received your donation request,our volunteer will contact you soon for donation pickup.<br><br><h3>For Further Queries Please Call Us +91-9109104350.<br>Regards Rope Of Hope.</h3>");
-                    response.sendRedirect("DonationSuccess.html");
-                }
-                else
-                {
+                    flag=-1;
+                    System.out.println("None Condition");
                     response.sendRedirect("Error.html");
-                }                
+                }
+                
+                if(Drawing!=null && DrawingType.equalsIgnoreCase("none") )
+                {
+                    flag=-1;
+                    System.out.println("None Condition");
+                    response.sendRedirect("Error.html");
+                }
+                if(Copy!=null && CopyType.equalsIgnoreCase("none"))
+                {
+                    flag=-1;
+                    System.out.println("None Condition");
+                    response.sendRedirect("Error.html");
+                }
+                if(Color!=null &&  ColorType.equalsIgnoreCase("none"))
+                {
+                    flag=-1;
+                    System.out.println("None Condition");
+                    response.sendRedirect("Error.html");
+                }
+                if(Pen!=null && PenType.equalsIgnoreCase("none"))
+                {
+                    flag=-1;
+                    System.out.println("None Condition");
+                    response.sendRedirect("Error.html");
+                }
+                if(Scale!=null && ScaleType.equalsIgnoreCase("none"))
+                {
+                    flag=-1;
+                    System.out.println("None Condition");
+                    response.sendRedirect("Error.html");
+                }
+                if(Erasers!=null && ErasersType.equalsIgnoreCase("none"))
+                {
+                    flag=-1;
+                    System.out.println("None Condition");
+                    response.sendRedirect("Error.html");
+                }
+                if(Sharpners!=null && SharpnersType.equalsIgnoreCase("none"))
+                {
+                    flag=-1;
+                    System.out.println("None Condition");
+                    response.sendRedirect("Error.html");
+                }
+                if(Board!=null &&  BoardType.equalsIgnoreCase("none"))
+                {
+                    
+                }
+                if(Chalk!=null &&  ChalkType.equalsIgnoreCase("none"))
+                {
+                    flag=-1;
+                    System.out.println("None Condition");
+                    response.sendRedirect("Error.html");
+                }
+                
+                if(Duster!=null && DusterType.equalsIgnoreCase("none"))
+                {
+                    flag=-1;
+                    System.out.println("None Condition");
+                    response.sendRedirect("Error.html");
+                }
+                if(StudyTable!=null && StudyTableType.equalsIgnoreCase("none"))
+                {
+                    flag=-1;
+                    System.out.println("None Condition");
+                    response.sendRedirect("Error.html");
+                }
+                
+                if(flag==0)
+                {
+                    boolean flag2=false;
+                        if(Pencil!=null && Pencil.equals("on"))
+                        {
+                            flag2=true;
+                            ItemInfo temp=new ItemInfo();
+                            
+                            int pencilQty=Integer.parseInt(request.getParameter("PencilQTY"));
+
+                            temp.setItemName("Pencil");
+                            temp.setItemType(PencilType);
+                            temp.setQuantity(pencilQty);
+
+                            Item.add(temp);
+                            System.out.println("Pencil "+"Type: "+PencilType+" Quantity: "+pencilQty);
+                        }
+
+                        if(Drawing!=null && Drawing.equals("on"))
+                        {
+                            flag2=true;
+                            ItemInfo temp=new ItemInfo();
+                            
+
+                            int DrawingQty=Integer.parseInt(request.getParameter("DrawingQTY"));
+
+                            temp.setItemName("Drawing");
+                            temp.setItemType(DrawingType);
+                            temp.setQuantity(DrawingQty);
+
+                            Item.add(temp);
+
+
+                            System.out.println("Drawing"+"Type: "+DrawingType+" Quantity: "+DrawingQty);
+                        }
+
+                        if(Copy!=null && Copy.equals("on"))
+                        {
+                            flag2=true;
+                            ItemInfo temp=new ItemInfo();
+                            
+
+                            int CopyQty=Integer.parseInt(request.getParameter("CopyQTY"));
+
+                            temp.setItemName("Copy");
+                            temp.setItemType(CopyType);
+                            temp.setQuantity(CopyQty);
+
+                            Item.add(temp);
+
+
+                            System.out.println("Copy"+"Type: "+CopyType+" Quantity: "+CopyQty);
+                        }
+
+
+                        if(Color!=null && Color.equals("on"))
+                        {
+                            flag2=true;
+                            ItemInfo temp=new ItemInfo();
+                            
+
+                            int ColorQty=Integer.parseInt(request.getParameter("ColorQTY"));
+
+                            temp.setItemName("Colour");
+                            temp.setItemType(ColorType);
+                            temp.setQuantity(ColorQty);
+
+                            Item.add(temp);
+
+
+                            System.out.println("Color"+"Type: "+ColorType+" Quantity: "+ColorQty);
+                        }
+
+                        if(Pen!=null && Pen.equals("on"))
+                        {
+                            flag2=true;
+                            ItemInfo temp=new ItemInfo();
+                            
+
+                            int PenQty=Integer.parseInt(request.getParameter("PenQTY"));
+
+                            temp.setItemName("Pen");
+                            temp.setItemType(PenType);
+                            temp.setQuantity(PenQty);
+
+                            Item.add(temp);
+
+
+                            System.out.println("Pen"+"Type: "+PenType+" Quantity: "+PenQty);
+                        }
+
+                        if(Scale!=null && Scale.equals("on"))
+                        {
+                            flag2=true;
+                            ItemInfo temp=new ItemInfo();
+                           
+
+                            int ScaleQty=Integer.parseInt(request.getParameter("ScaleQTY"));
+
+                            temp.setItemName("Scale");
+                            temp.setItemType(ScaleType);
+                            temp.setQuantity(ScaleQty);
+
+                            Item.add(temp);
+
+
+                            System.out.println("Scale"+"Type: "+ScaleType+" Quantity: "+ScaleQty);
+                        }
+
+                        if(Erasers!=null && Erasers.equals("on"))
+                        {
+                            flag2=true;
+                            ItemInfo temp=new ItemInfo();
+                           
+
+                            int ErasersQty=Integer.parseInt(request.getParameter("EraserQTY"));
+
+                            temp.setItemName("Eraser");
+                            temp.setItemType(ErasersType);
+                            temp.setQuantity(ErasersQty);
+
+                            Item.add(temp);
+
+
+                            System.out.println("Eraser"+"Type: "+ErasersType+" Quantity: "+ErasersQty);
+                        }
+
+                        if(Sharpners!=null && Sharpners.equals("on"))
+                        {
+                            flag2=true;
+                            ItemInfo temp=new ItemInfo();
+                            
+
+                            int SharpnersQty=Integer.parseInt(request.getParameter("SharpenerQTY"));
+
+                            temp.setItemName("Sharpener");
+                            temp.setItemType(SharpnersType);
+                            temp.setQuantity(SharpnersQty);
+
+                            Item.add(temp);
+
+
+                            System.out.println("Sharpner"+"Type: "+SharpnersType+" Quantity: "+SharpnersQty);
+                        }
+
+                        if(Board!=null && Board.equals("on"))
+                        {
+                            flag2=true;
+                            ItemInfo temp=new ItemInfo();
+                            
+
+                            int BoardQty=Integer.parseInt(request.getParameter("BoardQTY"));
+
+                            temp.setItemName("Board");
+                            temp.setItemType(BoardType);
+                            temp.setQuantity(BoardQty);
+
+                            Item.add(temp);
+
+
+                            System.out.println("Board"+"Type: "+BoardType+" Quantity: "+BoardQty);
+                        }
+
+                        if(Chalk!=null && Chalk.equals("on"))
+                        {
+                            flag2=true;
+                            ItemInfo temp=new ItemInfo();
+                            
+
+                            int ChalkQty=Integer.parseInt(request.getParameter("ChalkQTY"));
+
+                            temp.setItemName("Chalk");
+                            temp.setItemType(ChalkType);
+                            temp.setQuantity(ChalkQty);
+
+                            Item.add(temp);
+
+
+                            System.out.println("Chalk"+"Type: "+ChalkType+" Quantity: "+ChalkQty);
+                        }
+
+
+                        if(Duster!=null && Duster.equals("on"))
+                        {
+                            flag2=true;
+                            ItemInfo temp=new ItemInfo();
+                            
+
+                            int DusterQty=Integer.parseInt(request.getParameter("DusterQTY"));
+
+                            temp.setItemName("Duster");
+                            temp.setItemType(DusterType);
+                            temp.setQuantity(DusterQty);
+
+                            Item.add(temp);
+
+
+                            System.out.println("Duster"+"Type: "+DusterType+" Quantity: "+DusterQty);
+                        }
+
+
+                        if(StudyTable!=null && StudyTable.equals("on"))
+                        {
+                            flag2=true;
+                            ItemInfo temp=new ItemInfo();
+                           
+
+                            int StudyTableQty=Integer.parseInt(request.getParameter("StudyTableQTY"));
+
+                            temp.setItemName("StudyTable");
+                            temp.setItemType(StudyTableType);
+                            temp.setQuantity(StudyTableQty);
+
+                            Item.add(temp);
+
+
+                            System.out.println("StudyTable"+"Type: "+StudyTableType+" Quantity: "+StudyTableQty);
+                        }
+
+
+                        //ADDING DONATION IN DATABASE
+                        if(flag2 && Id.addDonation(Email,Item))
+                        {
+                            MailDAO.sendMail(Email,"Donation Request Received","Dear Hope,<br>" +"We have received your donation request,<br> our volunteer will be reviewing this and will contact you personally soon for further donation process.<br><br><h3>For Further Queries Please Call Us +91-9109104350.<br>Regards Rope Of Hope.</h3>");
+                            response.sendRedirect("DonationSuccess.html");
+                        }
+                        else
+                        {
+                            response.sendRedirect("Error.html");
+                        }
+            }//else of the none if.. 
             }
             catch(Exception E)
             {

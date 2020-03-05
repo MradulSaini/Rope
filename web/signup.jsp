@@ -18,14 +18,14 @@
     <style>
         body
         {
-            background: url('img/back.jpg');
+            background: url('img/banner-1.jpg');
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
-            background-size: cover;
+            background-size:cover;
             background-repeat: no-repeat;
-            height: 100%;
             background-position: center;
+            
         }
     </style>
 </head>
@@ -53,7 +53,7 @@
      <div id="loader" style="display:none;">
     </div>
 
-    <div style="width:35%" class="form-modal" style="margin-left: 20%;">
+    <div style="width:35%; opacity:85%;" class="form-modal" style="margin-left: 20%;">
         <h1 style="text-align: center;">
             Sign-up Become Member
         </h1>
@@ -68,7 +68,7 @@
 
         <div id="donor-form">
           <h2 style="text-align: center;">Volunteers Sign-up</h2>
-            <form action="UserSignup" method="post">
+            <form onsubmit="return validpass()" action="UserSignup" method="post">
                 
                 <input type="hidden" name="vtype" value="1">
                 <input type="text" name="vemail" readonly required value="<%=Email%>"/>
@@ -113,7 +113,7 @@
                 <table>
                     <tr>
                         <td> <br><label for="Qualification:" style="margin-left:5px;margin-right:5px; font-family: Arial; font-size: 14px;">Qualification:</label>
-                        <select style="margin-right:40px; font-size:14px; font-family:Arial;" name="quali" required>
+                        <select style="margin-right:5px; font-size:13px; font-family:Arial;" name="quali" required>
                         <option value="Higher Secondary" selected>H.S.S</option>
                         <option value="Graduate" selected>Graduate</option>
                         <option value="Post Graduate">Post Graduate</option>
@@ -121,7 +121,7 @@
                         <option value="Other">Other</option></td>
 
                         <td>  <br><label for="Proffession:" style="margin-left:5px;margin-right:5px; font-family: Arial; font-size: 14px;">Profession:</label>
-                            <select style="margin-right:40px; font-size:14px; font-family:Arial;" name="prof" required>
+                            <select style="margin-right:43px; font-size:14px; font-family:Arial;" name="prof" required>
                         <option value="Doctor" selected>Doctor</option>
                         <option value="Lawyer" selected>Lawyer</option>
                         <option value="Teacher" selected>Teacher</option>
@@ -136,15 +136,15 @@
                 </table>
                 <table>
                     <tr>
-                    <td><br><label for="Gender:" style="margin-left:8px;margin-right:10px; font-family: Arial; font-size: 15px;">Gender:</label>
-                        <select style="margin-right:80px; font-size:15px; font-family:Arial;" name="gender" required>
+                    <td><br><label for="Gender:" style="margin-left:5px;margin-right:10px; font-family: Arial; font-size: 15px;">Gender:</label>
+                        <select style="margin-right:65px; font-size:15px; font-family:Arial;" name="gender" required>
                     <option value="M" selected>Male</option>
                     <option value="F">Female</option>
                     </select></td>
                     <td>
-                      <br><label style="font-size:15px; font-family:Arial"for="Category" style="margin-right:10px"> Category:   </label>
+                      <br><label style="font-size:15px; font-family:Arial"for="Category" style="margin-right:10px; margin-left:10px;"> Category:   </label>
 
-                    <select style="font-size:15px; font-family:Arial" name="Category">
+                    <select style="font-size:14px; font-family:Arial; margin-left: 9px;" name="Category">
                         <option value="Daily">Daily</option>
                         <option value="Sunday">Sunday</option>
                         <option value="Creative Saturday">Creative Saturday</option>
@@ -154,8 +154,8 @@
                 <table>
                   <tr>
                     <td>
-                      <br><label style="font-size:15px; font-family:Arial"for="Skill" style="margin-left:0px; margin-right:10px"> Skill:   </label>
-          					<select style="font-size:15px; font-family:Arial" name="skill">
+                      <br><label for="Skill" style="margin-left:5px;margin-right:30px; font-family: Arial; font-size: 15px;"> Skill:   </label>
+          					<select style="font-size:15px; font-family:Arial;" name="skill">
               					<option value="Music">Music</option>
               					<option value="Dance">Dance</option>
               					<option value="Craft">Craft</option>
@@ -164,7 +164,7 @@
                 </table>
 
 
-                <button onclick="myLoader()" type="submit" class="btn login">Sign-up</button>
+                <button onclick="myFunction()" type="submit" class="btn login">Sign-up</button>
                 <p><a href="login.html">Already Have account</a></p>
                 <hr/>
                 <h3 style="text-align: center; font-weight: bold ;"><a href="index.html"> Home</a></h3>
@@ -210,10 +210,9 @@
             </form>
         </div>
     </div>
-6266116296
+
 
 </body>
-
 
 <script>
     function toggleSignup(){
