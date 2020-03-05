@@ -111,10 +111,11 @@ public class DonationEntryDAO
         Connection con=Mycon.getConnection();
         String sql="select * from itemdonation where verify=0";
         PreparedStatement ps=con.prepareStatement(sql);
-        
+        boolean flag=false;
         ResultSet rs=ps.executeQuery();
         while(rs.next())
         {
+            flag=true;
             DonationStatus d=new DonationStatus();
             int itemid=rs.getInt("item_id");
             int donationid=rs.getInt("donation_id");
@@ -167,7 +168,9 @@ public class DonationEntryDAO
             
             d=null;           
         }
-        return donationVerify;
+        if(flag)
+            return donationVerify;
+        return null;
     }
     
 }

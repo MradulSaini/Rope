@@ -52,6 +52,10 @@
         <servlet-name>ForgotPass</servlet-name>
         <servlet-class>Controller.ForgotPass</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PreviousItemDonation</servlet-name>
+        <servlet-class>Controller.PreviousItemDonation</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginAdmin</servlet-name>
         <url-pattern>/LoginAdmin</url-pattern>
@@ -99,6 +103,10 @@
     <servlet-mapping>
         <servlet-name>ForgotPass</servlet-name>
         <url-pattern>/ForgotPass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PreviousItemDonation</servlet-name>
+        <url-pattern>/PreviousItemDonation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

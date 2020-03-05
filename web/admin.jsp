@@ -56,7 +56,7 @@
             <hr>
             </form> 
                 
-            <h2>Search Employee and Donor</h2>
+            <h2>Search Employee!!!</h2>
             <form action="EmployeeSearch" method="post">
             <input  style="background-color:#272727; color:#eeee58; border:none; border-radius: 5px;" type="submit" value="Search All Employee"/> 
             <input type="hidden" name="searchAll" value="1"> 
@@ -79,9 +79,23 @@
         </form>
             <br>
             
+            <!-- Search Employee Record BY City Name-->    
+        <form action="EmployeeSearch" method="post">
+            <input type="text" name="city" placeholder="Enter the City Name">
+            <input style="background-color:#272727; color:#eeee58; border:none; border-radius: 5px;" type="submit" value="Search Employee By City"/> 
+            <input type="hidden" name="searchAll" value="5"> 
+        </form>
+            <br>
+            <hr>
+            <br>
         <!-- Search Employee Record By Skills-->
         <form action="EmployeeSearch" method="post">
-            <input type="text" name="skill" placeholder="Enter Skill">
+           <label for="Skill" style="margin-left:5px;margin-right:10px; font-family: Arial; font-size: 15px;"> Skills: </label>
+          					<select style="font-size:15px; font-family:Arial;" name="skill">
+              					<option value="Music">Music</option>
+              					<option value="Dance">Dance</option>
+              					<option value="Craft">Craft</option>
+            					</select>
             <input style="background-color:#272727; color:#eeee58; border:none; border-radius: 5px;" type="submit" value="Search Employee By Skill"/> 
             <input type="hidden" name="searchAll" value="3"> 
         </form>
@@ -89,22 +103,23 @@
             
         <!-- Search Employee Record By Category-->    
         <form action="EmployeeSearch" method="post">
-            <input type="text" name="category" placeholder="Enter the Category">
+            <label style="font-size:15px; font-family:Arial"for="Category" style="margin-right:10px; margin-left:10px;"> Category:   </label>
+
+                    <select style="font-size:14px; font-family:Arial; margin-left: 9px;" name="category">
+                        <option value="Daily">Daily</option>
+                        <option value="Sunday">Sunday</option>
+                        <option value="Creative Saturday">Creative Saturday</option>
+                      </select>
             <input style="background-color:#272727; color:#eeee58; border:none; border-radius: 5px;" type="submit" value="Search Employee By Category"/> 
             <input type="hidden" name="searchAll" value="4"> 
         </form>
             <br>
-            
-        <!-- Search Employee Record BY City Name-->    
-        <form action="EmployeeSearch" method="post">
-            <input type="text" name="city" placeholder="Enter the City Name">
-            <input style="background-color:#272727; color:#eeee58; border:none; border-radius: 5px;" type="submit" value="Search Employee By City"/> 
-            <input type="hidden" name="searchAll" value="5"> 
-        </form>
             <hr>
             <br>
             
+            
         <!-- Search Donor Record-->
+        <h2>Search Donor!!!</h2>
         <form action="EmployeeSearch" method="post">
             <input style="background-color:#272727; color:#eeee58; border:none; border-radius: 5px;" type="submit" value="Search All Donor"/> 
             <input type="hidden" name="searchAll" value="6"> 
@@ -114,8 +129,12 @@
         <!-- Search Inventory Record using INVENTORY NAME AND INVENTORY TYPE-->
         <h2>Search Inventories</h2>
         <form action="EmployeeSearch" method="post">
-            <input type="text" placeholder="Invetory Name" name="Iname">
-            <input type="text" placeholder="Invetory Type" name="Itype">
+            <label for="Iname">Item name:</label>
+            <select style="font-size:15px; font-family:Arial" onchange="print_type('Sitem', this.selectedIndex);" id="Sitem_id" name ="Iname" required></select>
+
+            <label for="Type" style=" font-size:15px; font-family:Arial;">Type:</label>
+            <select style="margin-left: 10px; font-size:15px; font-family:Arial" id ="Sitem" name="Itype" class="form-model" required></select>
+            
             <input style="background-color:#272727; color:#eeee58; border:none; border-radius: 5px;" type="submit" value="Search Inventory"/> 
             <input type="hidden" name="searchAll" value="7"> 
         </form>
@@ -167,6 +186,7 @@
         
     </body>
     <script language="javascript">
+    print_item("Sitem_id");    
     print_item("Aitem_id");
     print_item("Ritem_id");
     </script>

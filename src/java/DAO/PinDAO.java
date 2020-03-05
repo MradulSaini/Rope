@@ -53,7 +53,7 @@ public class PinDAO
         return false;
     }
     
-    //THIS FUNCTION MAKES ENTRY OF PIN CORRESPONDING TO THE EMAIL.
+    //THIS FUNCTION MAKES ENTRY OF PIN CORRESPONDING TO THE EMAIL FOR THE CHANGING PASSWORD REQUEST.
     public boolean pinEntry2(String Email,String Pin)
     {
         Connection con=Mycon.getConnection();

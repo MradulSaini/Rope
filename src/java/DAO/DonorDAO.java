@@ -7,6 +7,7 @@ package DAO;
 
 import Connection.Mycon;
 import Model.Donor;
+import Model.PreviousDonation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,13 +51,6 @@ public class DonorDAO
         return false;
     }
     
-    //This is for the INVENTORY DONATION DONE BY THE DONOR..
-    public boolean donorInventoryDonation()throws Exception
-    {
-       
-        return false;
-    }
-    
     //This is for Taking the Entry of the MONEY DONATED BY THE DONOR..
     public boolean donorMoneyDonation()throws Exception
     {
@@ -69,13 +63,6 @@ public class DonorDAO
         Connection con=Mycon.getConnection();
         String sql=" ";
         PreparedStatement ps=con.prepareStatement(sql);
-        return null;
-    }
-    
-    //This is for showing the record of the previous Inventory Donation to each logged in Donor.
-    public List prevItemDonation(Donor d)throws Exception
-    {
-        
         return null;
     }
     
@@ -164,11 +151,6 @@ public class DonorDAO
             System.out.println("Error in sending mail for received donation.");
             return false;
         }
-            
-        
-       
-        
-        
         if(MailDAO.sendMail(demail, "Donation Received Successfully", "Dear 'Hope', <br>" +
 "<br>" +
 "We've received your recent donation  for our organization Rope of Hope. <br>" +
@@ -179,7 +161,124 @@ public class DonorDAO
 "Rope Of Hope<br>" +
 "\"Be someone's smile keeper.\" "))
             System.out.println("Mail Sent Succesfully to donor for item donation");
-        
+        con.close();
         return true;
+    }
+    
+    
+    
+    //THIS FUNCTION TAKES THE EMAIL OF DONOR AND RETURN FIRST NAME.
+    public static String firstName(String Email)throws Exception
+    {
+        Connection con=Mycon.getConnection();
+        String sql="select * from donor where Email_id=?";
+        PreparedStatement ps=con.prepareStatement(sql);
+        ps.setString(1, Email);
+        
+        ResultSet rs=ps.executeQuery();
+        
+        if(rs.next())
+            return rs.getString("First_Name");
+      
+        return null;
+    }
+    
+    //THIS FUNCTION TAKES THE EMAIL OF THE DONOR AND SENDS THE LIST OF ALL PRVIOUS ITEM DONATION HE HAS PERFORMED.
+    public static List prevItemDonation(String Email)throws Exception
+    {
+        Connection con=Mycon.getConnection();
+        
+        //FETHCHING DONOR ID FROM DONOR TABLE..
+        String sql="select donor_id from donor where Email_id=?";
+        PreparedStatement ps=con.prepareStatement(sql);
+        ps.setString(1, Email);
+        
+        ResultSet rs=ps.executeQuery();
+        int did=0;
+        
+        if(rs.next())
+            did=rs.getInt("donor_id");
+        else
+        {
+            System.out.println("In else block where we are fetching the donor_id");
+            return null;
+        }
+        System.out.println("DID:"+did);
+        
+        //NOW WE WILL FETCH DONATION_ID AND DONATION_DATE USING DONOR_ID.
+        List<PreviousDonation> details=new ArrayList<PreviousDonation>();
+        
+        sql="select * from donation where donor_id=?";
+        ps=con.prepareStatement(sql);
+        ps.setInt(1, did);
+        rs=ps.executeQuery();
+        
+        while(rs.next())//Firsr rs
+        {
+            //System.out.println("In while loop of first rs");
+            String temp_date=rs.getString("Date");
+            int temp_donation_id=rs.getInt("donation_id");
+            
+            PreviousDonation temp=new PreviousDonation();
+            temp.setDonation_id(temp_donation_id);
+            temp.setDonation_date(temp_date);
+            details.add(temp);
+            
+        }
+        if(did==0)
+            return null;
+        
+        //Fetching item details from iteminfo table using donation_id stored in the ArrayList.
+        int j=0;
+        int[] qty;
+        String[] item_name;
+        String[] item_type;
+        for(int i=0;i<details.size();i++)
+        {
+            
+            qty = new int[12];
+            item_name=new String[12];
+            item_type = new String[12];
+            
+            sql="select item_id,QTY from itemdonation where donation_id=?";
+            ps=con.prepareStatement(sql);
+            ps.setInt(1, details.get(i).getDonation_id());
+            rs=ps.executeQuery();
+            j=0;
+            System.out.println("DonationId:"+details.get(i).getDonation_id());
+            //Here we have multiple item_id. second rs
+            while(rs.next())
+            {
+                System.out.println("In while of second rs");
+                int item_id=rs.getInt(1);
+                
+                qty[j]=rs.getInt(2);//Entering the quantity into array.
+                
+                String sql2="select name,type from iteminfo where item_id=?";
+                
+                PreparedStatement ps2=con.prepareStatement(sql2);
+                ps2.setInt(1, item_id);
+                
+                ResultSet rs2=ps2.executeQuery();
+                if(rs2.next())
+                {
+                    item_name[j]=rs2.getString(1);
+                    item_type[j]=rs2.getString(2);
+                }
+                else
+                {
+                    System.out.println("In else block rs2.next()");
+                    return null;
+                }
+                j++;    
+            }
+            details.get(i).setArraySize(j);
+            System.out.println("length of item_name:"+item_name.length+"The value of j:"+j+" length of item_type:"+item_type.length+"\n------\n");
+            details.get(i).setQTY(qty);
+            details.get(i).setItem_Name(item_name);
+            details.get(i).setItem_Type(item_type);
+        }
+        con.close();
+       return details;
     }
 }

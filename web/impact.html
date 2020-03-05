@@ -23,12 +23,28 @@
   font-family:"B612MONO-Bold";
   font-style:oblique;
 }
-#more {display: none;}</style>
+#more {display: none;}
+#more1 {display: none;}</style>
 <script>
   function myFunction() {
     var dots = document.getElementById("dots");
     var moreText = document.getElementById("more");
     var btnText = document.getElementById("myBtn");
+  
+    if (dots.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "Read more"; 
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "Read less"; 
+      moreText.style.display = "inline";
+    }
+  }
+  function myFunction1() {
+    var dots = document.getElementById("dots1");
+    var moreText = document.getElementById("more1");
+    var btnText = document.getElementById("myBtn1");
   
     if (dots.style.display === "none") {
       dots.style.display = "inline";
@@ -78,7 +94,7 @@
   </header>
   <!--/header-->
   <div class="about" style="background-color: rgb(79, 189, 180);">
-      <div class="container" style="">
+      <div class="container">
       <div class="text-center" >
         <br>
         <br>
@@ -132,11 +148,41 @@
       <div class="text-center">
         <br>
         <br>
-        <h2 align="center">Impact on Volunteer <img src="https://img.icons8.com/wired/50/000000/volunteering.png"> </h2>
-        
-        </div>
+        <h2 align="center" style="margin-top: -70px;">Impact on Volunteer <img src="https://img.icons8.com/wired/50/000000/volunteering.png"> </h2>
+        <h3 style="font-family:B612MONO-Bold; font-style:oblique; margin-top: -20px; color: black; font-weight:400;">"You get what you give and also what you're willing to take."</h3>
       </div>
     </div>
+  </div>
+        <div  style="background-color: rgb(236, 232, 179);">
+          <div class="container">
+            <div class="text-center ">
+              <p>Rope Of Hope is built upon five core values, fidelity,uniqueness, Insightful, kindness, and
+                Hope, all of which we share with our team.You will inculcate our core values leading to the
+                development of your character.<br><br>
+                Being a skill-based volunteer organisation this opportunity will allow you to make meaningful
+                contributions with your existing skill set and help to refine them.You will learn ground realities
+                and gain experience in real-time environment of working for a social cause. It will sharpen
+                interpersonal and intrapersonal skills, communication skills, problem solving, multitasking,
+                innovation and creativity</p>
+                
+                <p>
+                  <span id="dots1">...</span><span id="more1">
+                    It is an opportunity to be surrounded by people who inspire and motivate you and allow
+                    networking with a similar mind like people. Which will provide you access to a wider world
+                    and help to form a clearer vision for your future in this field.
+                    <br><br>
+                    Working in an NGO will instil a sense of selflessness and altruism. Since we impact the lives
+                    of students and help them rise from an under privileged lifestyle teaching them desire and
+                    will to facilitate equality and fairness for themselves and others, we ultimately make a lasting
+                    impact on the lives of others and yours.
+                    <br><br>
+                    Certificate of NGOs have credibility and add value to your resume and speak volumes about
+                    your character as in the process it helps you to become a better version of yourself.  
+                  </span></p>
+                  <button onclick="myFunction1()" id="myBtn1" style="background-color:#272727; color:#eeee58; border:none; border-radius: 12px;">Read more</button>
+        </div>
+      </div>
+    
 
   <br>
   <div class="sub-footer">
@@ -155,12 +201,17 @@
 
         <div class="col-md-4 col-md-offset-4">
           <div class="copyright">
-           <p> &copy; Rope Of Hope. All Rights Reserved. &trade;</p>
+           <p> &copy; Rope Of Hope.All Rights Reserved.&trade;
+              <br>
+              <i class="fa fa-phone fa"></i> +91 9109104350
+              <br>  
+              <i class="fa fa-home fa"></i>10 Venkatesh Market, Manik Bagh Rd Indore,
+                Madhya Pradesh <br>India
+           </p>
           </div>
         </div>
       </div>
     </div>
-
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="js/jquery.min.js"></script>

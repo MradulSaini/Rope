@@ -318,7 +318,7 @@ a:hover {
 .about .text-center h2
 {
   padding-top: 1%;
-	text-transform:uppercase;
+	text-transform:none;
 	font-weight:550;
 	font-size:34px;
 	font-family:"B612MONO-Bold";

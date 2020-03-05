@@ -46,7 +46,7 @@ public class UpdateInventory extends HttpServlet {
                 }
                 else
                 {
-                    session.setMaxInactiveInterval(120);
+                    session.setMaxInactiveInterval(320);
                     email=session.getAttribute("email").toString();
                     session.setAttribute("email", email);
                     session.setAttribute("etype", "admin");

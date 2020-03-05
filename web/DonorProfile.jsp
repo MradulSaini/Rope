@@ -16,11 +16,13 @@
     </head>
     <%
         String Email=null;
+        String name=null;
         if(session==null)
             response.sendRedirect("login.html");
         try
         {
             Email=session.getAttribute("Email").toString();
+            name=session.getAttribute("name").toString();
             if(Email==null)
             {
                 session.invalidate();
@@ -40,14 +42,14 @@
     <body>
          <header class="header">
       <h1 class="logo"><a href="donation.jsp">Rope Of Hope</a></h1>
-      <h3 style="color: burlywood;">Hello <%=Email%></h3>
+      <h3 style="color: #eeee58;">Hello <%=name%></h3>
         <ul class="main-nav">
             <li><a href="DonorProfile.jsp">Profile</a></li>
             <li><a href="LogoutAdmin">Log Out</a></li>
         </ul>
     </header> 
         <form action="PreviousItemDonation" method="post">
-            <input type="submit" value="Get Previous Item Donation Status" name="money"/>
+            <button style=" margin-left:45%; background-color:#272727; color:#eeee58; border:none; border-radius: 5px;" type="submit" value="" class="btn btn-primary btn-lg">Previous Donation</button>
         </form>
         
     </body>
