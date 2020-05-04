@@ -26,7 +26,7 @@ public class MailDAO
         boolean b = false;
         
         String senderid = "ngo.ropeofhope";
-        String senderpass = "Helpto@123";
+        String senderpass = "Enter Your Password";
         
         //1st step) Get the session object	
         Properties props = new Properties();
